@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Career Report — AI Career</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Background blob layer -->
+  <div class="result-bg" aria-hidden="true"></div>
+
+  <!-- Topnav -->
+  <nav class="topnav" id="topnav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <span class="nav-brand-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>
+        </span>
+        Career Guidance<span>.</span>
+      </a>
+      <div class="nav-badge">
+        <span class="nav-badge-dot"></span>
+        Career Intelligence Report
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="hero">
+    <div class="hero-inner">
+
+      <div class="hero-eyebrow">
+        <span class="eyebrow-chip">
+          <span class="eyebrow-label">AI Career Guidance</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-pre">Your path is</span>
+        <span class="hero-title-career" id="career-title">Loading…</span>
+      </h1>
+
+      <p class="hero-desc">
+        AI-powered roadmap tailored to your unique profile, skills, and aspirations.
+      </p>
+
+      <div class="hero-divider"></div>
+
+    </div>
+
+    <div class="hero-scroll" onclick="document.getElementById('sec-reason').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+      <div class="scroll-arrow">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main report -->
+  <main class="report-main">
+    <div class="report-grid">
+
+      <!-- Why This Career -->
+      <section class="card card-wide reveal-scroll" id="sec-reason">
+        <div class="card-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Analysis
+        </div>
+        <h2 class="card-title">Why This Career?</h2>
+        <p class="card-body-text" id="career-reason"></p>
+      </section>
+
+      <!-- Salary Progression -->
+      <section class="card card-wide reveal-scroll" id="sec-salary">
+        <div class="card-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+          </svg>
+          Compensation
+        </div>
+        <h2 class="card-title">Salary Progression</h2>
+        <div class="salary-grid">
+          <div class="salary-card">
+            <div class="salary-card-level">Entry Level</div>
+            <div class="salary-card-amount" id="salary-entry">—</div>
+            <div class="salary-card-bar" style="--pct: 33%"></div>
+          </div>
+          <div class="salary-card salary-card--featured">
+            <div class="salary-card-level">Mid Level</div>
+            <div class="salary-card-amount" id="salary-mid">—</div>
+            <div class="salary-card-bar" style="--pct: 62%"></div>
+            <div class="salary-card-glow"></div>
+          </div>
+          <div class="salary-card">
+            <div class="salary-card-level">Senior Level</div>
+            <div class="salary-card-amount" id="salary-senior">—</div>
+            <div class="salary-card-bar" style="--pct: 100%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="card reveal-scroll" id="sec-skills">
+        <div class="card-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+          Skills
+        </div>
+        <h2 class="card-title">Skills To Learn</h2>
+        <ul class="skill-list" id="skills-list"></ul>
+      </section>
+
+      <!-- Courses -->
+      <section class="card reveal-scroll" id="sec-courses">
+        <div class="card-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
+          </svg>
+          Learning Path
+        </div>
+        <h2 class="card-title">Recommended Courses</h2>
+        <ul class="course-list" id="courses-list"></ul>
+      </section>
+
+      <!-- Roadmap -->
+      <section class="card card-wide reveal-scroll" id="sec-roadmap">
+        <div class="card-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M3 12h18M12 3l9 9-9 9" />
+          </svg>
+          Journey
+        </div>
+        <h2 class="card-title">Career Roadmap</h2>
+        <ol class="timeline" id="roadmap-list"></ol>
+      </section>
+
+      <!-- Strengths -->
+      <section class="card reveal-scroll" id="sec-strengths">
+        <div class="card-label card-label--green">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z" />
+          </svg>
+          Advantages
+        </div>
+        <h2 class="card-title">Your Strengths</h2>
+        <ul class="insight-list insight-list--positive" id="strengths-list"></ul>
+      </section>
+
+      <!-- Weaknesses -->
+      <section class="card reveal-scroll" id="sec-weaknesses">
+        <div class="card-label card-label--amber">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path
+              d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+          </svg>
+          Gaps
+        </div>
+        <h2 class="card-title">Areas Holding You Back</h2>
+        <ul class="insight-list insight-list--warning" id="weaknesses-list"></ul>
+      </section>
+
+      <!-- Improvement Plan -->
+      <section class="card card-wide reveal-scroll" id="sec-improvement">
+        <div class="card-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M18 20V10M12 20V4M6 20v-6" />
+          </svg>
+          Action Plan
+        </div>
+        <h2 class="card-title">Improvement Plan</h2>
+        <ul class="action-list" id="improvement-list"></ul>
+      </section>
+
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="report-footer reveal-scroll">
+      <p class="footer-text">Want to explore another path?</p>
+      <a href="/" class="footer-cta">
+        Start a new report
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    /* ══════════════════════════════════════
+       POPULATE DATA FROM localStorage
+    ══════════════════════════════════════ */
+    const result = JSON.parse(localStorage.getItem("career_result"));
+
+    if (result) {
+      document.getElementById("career-title").textContent = result.career || "Your Career";
+      document.getElementById("career-reason").textContent = result.reason || "";
+      document.getElementById("salary-entry").textContent = result.salary?.entry || "—";
+      document.getElementById("salary-mid").textContent = result.salary?.mid || "—";
+      document.getElementById("salary-senior").textContent = result.salary?.senior || "—";
+
+      function populateList(id, items, type) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = "";
+        if (!Array.isArray(items)) items = items ? [items] : [];
+        items.forEach((item, i) => {
+          const li = document.createElement("li");
+          if (type === "skill") {
+            li.className = "skill-tag";
+            li.textContent = item;
+          } else if (type === "course") {
+            li.className = "course-item";
+            li.innerHTML = `<span class="course-num">${String(i + 1).padStart(2, "0")}</span><span class="course-name">${item}</span>`;
+          } else if (type === "timeline") {
+            li.className = "timeline-item";
+            li.innerHTML = `<span class="timeline-num">${i + 1}</span><span class="timeline-text">${item}</span>`;
+          } else if (type === "insight-pos") {
+            li.className = "insight-item";
+            li.innerHTML = `<span class="insight-icon">✦</span><span>${item}</span>`;
+          } else if (type === "insight-warn") {
+            li.className = "insight-item";
+            li.innerHTML = `<span class="insight-icon insight-icon--warn">◆</span><span>${item}</span>`;
+          } else if (type === "action") {
+            li.className = "action-item";
+            li.innerHTML = `<span class="action-index">${String(i + 1).padStart(2, "0")}</span><span>${item}</span>`;
+          }
+          el.appendChild(li);
+        });
+      }
+
+      populateList("skills-list", result.skills, "skill");
+      populateList("courses-list", result.courses, "course");
+      populateList("roadmap-list", result.roadmap, "timeline");
+      populateList("strengths-list", result.strengths, "insight-pos");
+      populateList("weaknesses-list", result.weaknesses, "insight-warn");
+      populateList("improvement-list", result.improvement_areas, "action");
+    }
+
+    /* ══════════════════════════════════════
+       GSAP ANIMATIONS
+    ══════════════════════════════════════ */
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Background blobs ── */
+    const bg = document.querySelector('.result-bg');
+
+    const blobDefs = [
+      { cls: 'blob-1', x: -60, y: -100, toX: 40, toY: -40, dur: 9, scale: 1.15 },
+      { cls: 'blob-2', x: 20, y: 30, toX: -30, toY: -60, dur: 11, scale: 1.1 },
+      { cls: 'blob-3', x: -20, y: 20, toX: 60, toY: -30, dur: 7, scale: 1.2 }
+    ];
+    blobDefs.forEach(function (def) {
+      const b = document.createElement('div');
+      b.className = 'gsap-blob ' + def.cls;
+      bg.appendChild(b);
+      gsap.set(b, { x: def.x, y: def.y });
+      gsap.to(b, { x: def.toX, y: def.toY, scale: def.scale, duration: def.dur, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    });
+
+    /* ── Floating particles ── */
+    for (var i = 0; i < 16; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'gsap-particle';
+      bg.appendChild(dot);
+      var sz = gsap.utils.random(4, 13);
+      var dur = gsap.utils.random(6, 14);
+      gsap.set(dot, {
+        x: gsap.utils.random(0, window.innerWidth),
+        y: gsap.utils.random(0, window.innerHeight),
+        width: sz, height: sz,
+        opacity: gsap.utils.random(0.06, 0.22)
+      });
+      gsap.to(dot, {
+        x: '+=' + gsap.utils.random(-120, 120),
+        y: '+=' + gsap.utils.random(-120, 120),
+        opacity: gsap.utils.random(0.03, 0.18),
+        duration: dur,
+        delay: gsap.utils.random(0, 6),
+        ease: 'sine.inOut',
+        yoyo: true, repeat: -1
+      });
+    }
+
+    /* ── Hero entrance timeline ── */
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.fromTo('.hero-eyebrow', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 })
+      .fromTo('.hero-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.75 }, '-=0.4')
+      .fromTo('.hero-desc', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65 }, '-=0.45')
+      .fromTo('.hero-divider', { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.5, transformOrigin: 'left' }, '-=0.35')
+      .fromTo('.hero-scroll', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.2');
+
+    /* ── Topnav scroll ── */
+    window.addEventListener('scroll', function () {
+      document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Scroll-reveal for cards ── */
+    const revealEls = document.querySelectorAll('.reveal-scroll');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  </script>
+
+</body>
+
+</html>

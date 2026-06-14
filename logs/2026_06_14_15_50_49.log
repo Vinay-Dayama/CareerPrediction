@@ -1,0 +1,8 @@
+[ 2026-06-14 15:50:49,865 ] WARNING -  * Debugger is active!
+[ 2026-06-14 15:50:49,865 ] INFO -  * Debugger PIN: 184-971-709
+[ 2026-06-14 15:50:53,677 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:50:53] "GET / HTTP/1.1" 200 -
+[ 2026-06-14 15:50:53,765 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:50:53] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+[ 2026-06-14 15:50:53,765 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:50:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+[ 2026-06-14 15:50:58,299 ] INFO - Prediction pipeline started
+[ 2026-06-14 15:50:58,311 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:50:58] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[ 2026-06-14 15:53:05,413 ] INFO -  * Detected change in 'C:\\Users\\Vinay n Vivek\\Desktop\\CareerPrediction1\\CareerPrediction\\src\\pipeline\\predict_pipeline.py', reloading

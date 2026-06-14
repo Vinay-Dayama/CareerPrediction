@@ -1,0 +1,11 @@
+[ 2026-06-14 15:20:17,646 ] WARNING -  * Debugger is active!
+[ 2026-06-14 15:20:17,649 ] INFO -  * Debugger PIN: 439-818-221
+[ 2026-06-14 15:20:22,537 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:20:22] "GET / HTTP/1.1" 200 -
+[ 2026-06-14 15:20:22,569 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:20:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+[ 2026-06-14 15:20:22,575 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:20:22] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+[ 2026-06-14 15:23:00,835 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:23:00] "GET / HTTP/1.1" 200 -
+[ 2026-06-14 15:23:00,852 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:23:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+[ 2026-06-14 15:23:00,863 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:23:00] "GET /static/script.js HTTP/1.1" 200 -
+[ 2026-06-14 15:23:54,040 ] INFO - Prediction pipeline started
+[ 2026-06-14 15:23:54,040 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:23:54] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[ 2026-06-14 15:25:06,719 ] INFO -  * Detected change in 'C:\\Users\\najee\\OneDrive\\Desktop\\MINI PROJECT\\final\\CareerPrediction\\src\\components\\response_parser.py', reloading

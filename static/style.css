@@ -1,0 +1,487 @@
+/* ================================================
+   AI Career Guidance — style.css
+   Animations handled by GSAP (see script.js)
+   ================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0d0d0d;
+  --white: #ffffff;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --accent-dark: #1d4ed8;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --error: #dc2626;
+  --error-bg: #fef2f2;
+  --success: #16a34a;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+/* ───────────── PAGE SYSTEM ───────────── */
+.page { display: none; min-height: 100vh; }
+.page.active { display: flex; opacity: 1 !important; visibility: visible !important; }
+
+/* ═══════════════════════════════════════════
+   LANDING PAGE
+═══════════════════════════════════════════ */
+#page-landing {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--white);
+  overflow: hidden;
+  gap: 48px;
+  padding: 48px 64px;
+}
+
+/* ── Background layer ── */
+.landing-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* GSAP blob elements (injected by script.js) */
+.gsap-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.blob-1 {
+  width: 560px; height: 560px;
+  top: -160px; right: -140px;
+  background: radial-gradient(circle at 40% 40%, #bfdbfe, #dbeafe 50%, transparent 75%);
+}
+.blob-2 {
+  width: 440px; height: 440px;
+  bottom: -120px; left: -100px;
+  background: radial-gradient(circle at 60% 60%, #eff6ff, #dbeafe 50%, transparent 75%);
+}
+.blob-3 {
+  width: 240px; height: 240px;
+  top: 40%; left: 40%;
+  background: radial-gradient(circle, #bfdbfe 0%, transparent 70%);
+}
+
+/* GSAP floating particles (injected by script.js) */
+.gsap-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: #2563eb;
+  pointer-events: none;
+}
+
+/* ── Hero text ── */
+.landing-content {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  max-width: 480px;
+  flex: 1;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.brand-badge svg { width: 14px; height: 14px; }
+
+.landing-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 18px;
+}
+.landing-title span { color: var(--accent); display: inline-block; }
+
+.landing-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.landing-cta-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+}
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary svg { width: 18px; height: 18px; }
+
+.landing-note { font-size: 13px; color: var(--gray-400); }
+
+/* ── Scene (right side SVG panel) ── */
+.landing-scene {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Thought bubble ── */
+.thought-bubble {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+.thought-text {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 14px 14px 14px 2px;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.15);
+}
+.thought-dots {
+  display: flex;
+  gap: 3px;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+.thought-dots span {
+  width: 5px; height: 5px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: block;
+}
+.thought-dots span:nth-child(2) { width: 7px; height: 7px; }
+.thought-dots span:nth-child(3) { width: 9px; height: 9px; }
+
+/* ═══════════════════════════════════════════
+   ROLE SELECT PAGE
+═══════════════════════════════════════════ */
+#page-role {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-50);
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+
+.role-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--shadow-lg);
+}
+
+.page-header { margin-bottom: 36px; }
+
+.page-tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.page-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.page-desc { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+
+.select-wrapper { position: relative; margin-bottom: 8px; }
+.select-wrapper select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--gray-50);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 14px 48px 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--black);
+  cursor: pointer;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.select-wrapper select:focus { border-color: var(--accent); }
+.select-arrow {
+  position: absolute;
+  right: 16px; top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-400);
+}
+
+.role-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.role-btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════
+   FORM PAGES (shared)
+═══════════════════════════════════════════ */
+#page-student, #page-undergraduate, #page-working {
+  flex-direction: column;
+  background: var(--gray-50);
+  min-height: 100vh;
+}
+
+.form-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar-brand {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--black);
+}
+.topbar-brand span { color: var(--accent); }
+.topbar-role-badge {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+
+.form-body {
+  flex: 1;
+  padding: 48px 24px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-container { width: 100%; max-width: 640px; }
+
+.form-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+.form-section-sub { font-size: 14px; color: var(--gray-600); margin-bottom: 36px; }
+
+.fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field-full { grid-column: 1 / -1; }
+
+.field-group { display: flex; flex-direction: column; gap: 6px; }
+
+/* ── Experience & Achievements boxes ── */
+.fields-grid .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fields-grid .field-group.field-full {
+  grid-column: 1 / -1;
+}
+
+.field-label { font-size: 13px; font-weight: 500; color: var(--gray-700); letter-spacing: 0.01em; }
+.field-label .req { color: var(--error); margin-left: 3px; }
+
+.field-input {
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--black);
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+.field-input::placeholder { color: var(--gray-400); }
+.field-input:focus { border-color: var(--accent); }
+.field-input.error { border-color: var(--error); background: var(--error-bg); }
+
+.field-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.field-hint { font-size: 11px; color: var(--gray-400); }
+
+.field-error {
+  font-size: 12px;
+  color: var(--error);
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+.field-error.visible { display: flex; }
+
+.divider { height: 1px; background: var(--gray-200); margin: 32px 0; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 20px;
+}
+
+/* ───────────── BOTTOM NAV ───────────── */
+.form-footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 2px solid var(--gray-200);
+  color: var(--gray-700);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 11px 24px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-back:hover { border-color: var(--gray-400); color: var(--black); }
+
+.btn-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+}
+.btn-guide:hover { background: var(--accent-dark); }
+.btn-guide svg { width: 16px; height: 16px; }
+
+/* ───────────── PROGRESS BAR ───────────── */
+.progress-bar-outer { height: 3px; background: var(--gray-200); }
+.progress-bar-inner { height: 100%; background: var(--accent); }
+
+/* ───────────── RESPONSIVE ───────────── */
+@media (max-width: 860px) {
+  #page-landing { flex-direction: column; padding: 48px 24px; }
+  .landing-content { text-align: center; }
+  .landing-cta-area { align-items: center; }
+  .landing-scene { max-width: 320px; }
+}
+@media (max-width: 600px) {
+  .fields-grid { grid-template-columns: 1fr; }
+  .field-full { grid-column: 1; }
+  .form-topbar { padding: 16px 20px; }
+  .form-body { padding: 32px 16px 110px; }
+  .form-footer { padding: 14px 20px; }
+  .role-card { padding: 32px 24px; }
+}

@@ -1,0 +1,4 @@
+[ 2026-06-14 15:53:06,542 ] WARNING -  * Debugger is active!
+[ 2026-06-14 15:53:06,546 ] INFO -  * Debugger PIN: 184-971-709
+[ 2026-06-14 15:53:12,701 ] INFO - Prediction pipeline started
+[ 2026-06-14 15:53:12,701 ] INFO - 127.0.0.1 - - [14/Jun/2026 15:53:12] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -

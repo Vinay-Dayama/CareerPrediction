@@ -1,0 +1,13 @@
+[ 2026-06-02 11:32:34,459 ] WARNING -  * Debugger is active!
+[ 2026-06-02 11:32:34,463 ] INFO -  * Debugger PIN: 439-818-221
+[ 2026-06-02 11:32:48,919 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:32:48] "GET / HTTP/1.1" 200 -
+[ 2026-06-02 11:32:48,965 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:32:48] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+[ 2026-06-02 11:32:48,977 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:32:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+[ 2026-06-02 11:32:49,186 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:32:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[ 2026-06-02 11:33:32,667 ] INFO - Prediction pipeline started
+[ 2026-06-02 11:33:32,667 ] INFO - Sending request to Gemini
+[ 2026-06-02 11:33:56,816 ] INFO - Gemini response received
+[ 2026-06-02 11:33:56,820 ] INFO - Prediction completed
+[ 2026-06-02 11:33:56,820 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:33:56] "POST /predict HTTP/1.1" 200 -
+[ 2026-06-02 11:33:56,853 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:33:56] "GET /result HTTP/1.1" 200 -
+[ 2026-06-02 11:33:56,875 ] INFO - 127.0.0.1 - - [02/Jun/2026 11:33:56] "[36mGET /static/result.css HTTP/1.1[0m" 304 -

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Career Guidance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+  <!-- GSAP core + ScrollTrigger plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- PAGE 1: LANDING -->
+<section class="page active" id="page-landing">
+  <div class="landing-bg"></div>
+
+  <div class="landing-content">
+    <div class="brand-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      AI-Powered Career Intelligence
+    </div>
+    <h1 class="landing-title">Your Career,<br><span>Guided by AI.</span></h1>
+    <p class="landing-sub">Personalised career recommendations for students, undergraduates, and working professionals — powered by intelligent analysis.</p>
+    <div class="landing-cta-area">
+      <button class="btn-primary" onclick="goTo('page-role')">
+        Get Started
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <span class="landing-note">Free · No account needed</span>
+    </div>
+  </div>
+
+  <!-- Animated student scene -->
+  <div class="landing-scene">
+    <div class="thought-bubble">
+      <div class="thought-dots"><span></span><span></span><span></span></div>
+      <div class="thought-text" id="thought-text" style="transition:opacity 0.3s,transform 0.3s;">Science stream? 🤔</div>
+    </div>
+
+    <svg id="student-scene-svg" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:420px;filter:drop-shadow(0 8px 32px rgba(37,99,235,0.10));" aria-label="Animated student sitting at desk looking worried">
+
+      <!-- Background -->
+      <rect width="420" height="320" rx="20" fill="#f0f6ff"/>
+      <rect x="0" y="270" width="420" height="50" fill="#dbeafe" opacity="0.5"/>
+
+      <!-- Wall shelf -->
+      <rect x="20" y="60" width="110" height="8" rx="3" fill="#bfdbfe"/>
+      <rect x="26" y="36" width="12" height="24" rx="2" fill="#2563eb"/>
+      <rect x="40" y="40" width="10" height="20" rx="2" fill="#60a5fa"/>
+      <rect x="52" y="33" width="13" height="27" rx="2" fill="#1d4ed8"/>
+      <rect x="67" y="38" width="11" height="22" rx="2" fill="#93c5fd"/>
+      <rect x="80" y="35" width="14" height="25" rx="2" fill="#3b82f6"/>
+
+      <!-- Window -->
+      <rect x="310" y="40" width="80" height="80" rx="8" fill="#bfdbfe" opacity="0.6"/>
+      <rect x="310" y="40" width="80" height="80" rx="8" fill="none" stroke="#93c5fd" stroke-width="3"/>
+      <line x1="350" y1="40" x2="350" y2="120" stroke="#93c5fd" stroke-width="2"/>
+      <line x1="310" y1="80" x2="390" y2="80" stroke="#93c5fd" stroke-width="2"/>
+      <circle cx="380" cy="55" r="14" fill="#fef08a" opacity="0.7"/>
+      <line x1="380" y1="35" x2="380" y2="31" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
+      <line x1="380" y1="75" x2="380" y2="79" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
+      <line x1="360" y1="55" x2="356" y2="55" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
+      <line x1="400" y1="55" x2="404" y2="55" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Desk lamp -->
+      <ellipse cx="310" cy="222" rx="18" ry="5" fill="#94a3b8"/>
+      <rect x="308" y="170" width="4" height="52" rx="2" fill="#cbd5e1"/>
+      <line x1="310" y1="172" x2="285" y2="190" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="277" cy="196" rx="18" ry="9" fill="#e2e8f0" transform="rotate(-30 277 196)"/>
+      <circle id="lamp-glow" cx="277" cy="208" r="28" fill="#fef9c3" opacity="0.4"/>
+
+      <!-- Desk -->
+      <rect x="80" y="220" width="300" height="14" rx="6" fill="#c4a882"/>
+      <rect x="80" y="234" width="12" height="40" rx="3" fill="#a0795a"/>
+      <rect x="368" y="234" width="12" height="40" rx="3" fill="#a0795a"/>
+      <rect x="100" y="234" width="10" height="36" rx="3" fill="#a0795a"/>
+      <rect x="310" y="234" width="10" height="36" rx="3" fill="#a0795a"/>
+
+      <!-- Books stacked on desk -->
+      <g id="books-stack">
+        <rect x="82" y="200" width="54" height="10" rx="2" fill="#2563eb"/>
+        <rect x="85" y="192" width="50" height="10" rx="2" fill="#60a5fa"/>
+        <rect x="83" y="184" width="52" height="10" rx="2" fill="#1d4ed8"/>
+        <line x1="90" y1="195" x2="128" y2="195" stroke="white" stroke-width="1.2" opacity="0.5"/>
+        <line x1="90" y1="205" x2="128" y2="205" stroke="white" stroke-width="1.2" opacity="0.5"/>
+      </g>
+
+      <!-- Papers -->
+      <rect x="160" y="204" width="70" height="16" rx="2" fill="white" opacity="0.9" transform="rotate(-3 160 204)"/>
+      <rect x="168" y="206" width="50" height="2" rx="1" fill="#cbd5e1" transform="rotate(-3 168 206)"/>
+      <rect x="168" y="211" width="40" height="2" rx="1" fill="#cbd5e1" transform="rotate(-3 168 211)"/>
+      <rect x="168" y="216" width="45" height="2" rx="1" fill="#cbd5e1" transform="rotate(-3 168 216)"/>
+      <rect x="230" y="202" width="65" height="18" rx="2" fill="white" opacity="0.9" transform="rotate(4 230 202)"/>
+      <rect x="236" y="205" width="45" height="2" rx="1" fill="#cbd5e1" transform="rotate(4 236 205)"/>
+      <rect x="236" y="210" width="38" height="2" rx="1" fill="#cbd5e1" transform="rotate(4 236 210)"/>
+      <rect x="236" y="215" width="42" height="2" rx="1" fill="#cbd5e1" transform="rotate(4 236 215)"/>
+
+      <!-- Pencil -->
+      <g id="desk-pencil">
+        <rect x="305" y="195" width="6" height="30" rx="2" fill="#fde68a" transform="rotate(15 308 210)"/>
+        <polygon points="305,195 311,195 308,187" fill="#f97316" transform="rotate(15 308 210)"/>
+        <rect x="305" y="223" width="6" height="5" rx="1" fill="#fca5a5" transform="rotate(15 308 210)"/>
+      </g>
+
+      <!-- Chair -->
+      <rect x="145" y="248" width="110" height="16" rx="6" fill="#475569"/>
+      <rect x="155" y="210" width="90" height="40" rx="6" fill="#334155"/>
+      <rect x="150" y="264" width="8" height="30" rx="3" fill="#475569"/>
+      <rect x="242" y="264" width="8" height="30" rx="3" fill="#475569"/>
+      <rect x="152" y="284" width="100" height="5" rx="2" fill="#334155"/>
+
+      <!-- Student body -->
+      <g id="student-body">
+        <rect x="186" y="185" width="68" height="62" rx="10" fill="#3b82f6"/>
+        <path d="M210 185 L220 200 L230 185" fill="#dbeafe"/>
+        <rect x="165" y="190" width="24" height="12" rx="6" fill="#3b82f6"/>
+        <rect x="158" y="200" width="14" height="26" rx="6" fill="#fcd9b6"/>
+        <rect x="252" y="190" width="22" height="12" rx="6" fill="#3b82f6"/>
+        <rect x="256" y="200" width="12" height="22" rx="6" fill="#fcd9b6"/>
+        <rect x="198" y="196" width="16" height="12" rx="3" fill="#2563eb" opacity="0.5"/>
+      </g>
+
+      <!-- Student head -->
+      <g id="student-head">
+        <rect x="212" y="172" width="16" height="18" rx="4" fill="#fcd9b6"/>
+        <ellipse cx="220" cy="152" rx="34" ry="32" fill="#fcd9b6"/>
+        <ellipse cx="220" cy="126" rx="34" ry="14" fill="#1c1917"/>
+        <rect x="186" y="122" width="10" height="30" rx="5" fill="#1c1917"/>
+        <rect x="244" y="122" width="10" height="26" rx="5" fill="#1c1917"/>
+        <ellipse cx="186" cy="153" rx="6" ry="8" fill="#fcd9b6"/>
+        <ellipse cx="254" cy="153" rx="6" ry="8" fill="#fcd9b6"/>
+        <g id="student-eyes">
+          <ellipse cx="208" cy="148" rx="8" ry="7" fill="white"/>
+          <ellipse cx="232" cy="148" rx="8" ry="7" fill="white"/>
+          <ellipse cx="210" cy="150" rx="4" ry="4" fill="#1c1917"/>
+          <ellipse cx="234" cy="150" rx="4" ry="4" fill="#1c1917"/>
+          <path d="M200 139 Q208 135 215 138" stroke="#1c1917" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M225 138 Q232 135 240 139" stroke="#1c1917" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <line x1="215" y1="137" x2="218" y2="140" stroke="#1c1917" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="225" y1="140" x2="228" y2="137" stroke="#1c1917" stroke-width="1.5" stroke-linecap="round"/>
+        </g>
+        <path d="M211 164 Q220 159 229 164" stroke="#b45309" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="248" cy="140" rx="4" ry="6" fill="#bfdbfe" opacity="0.8"/>
+        <path d="M248 134 L244 140 L252 140 Z" fill="#bfdbfe" opacity="0.8"/>
+        <ellipse cx="169" cy="197" rx="12" ry="9" fill="#fcd9b6"/>
+      </g>
+
+      <!-- Floating question marks -->
+      <g id="q-mark-1"><text x="175" y="175" font-size="20" font-family="Inter, sans-serif" font-weight="800" fill="#2563eb" opacity="0.8">?</text></g>
+      <g id="q-mark-2"><text x="255" y="165" font-size="16" font-family="Inter, sans-serif" font-weight="800" fill="#60a5fa" opacity="0.7">?</text></g>
+      <g id="q-mark-3"><text x="215" y="115" font-size="24" font-family="Inter, sans-serif" font-weight="800" fill="#1d4ed8" opacity="0.75">?</text></g>
+
+      <!-- Caption -->
+      <text x="210" y="308" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b" letter-spacing="0.05em">Don't worry — we've got you.</text>
+    </svg>
+  </div>
+</section>
+
+
+<!-- PAGE 2: ROLE SELECTION -->
+<section class="page" id="page-role">
+  <div class="role-card">
+    <div class="page-header">
+      <div class="page-tag">Step 1 of 2</div>
+      <h2 class="page-title">What's your current status?</h2>
+      <p class="page-desc">Select your current stage so we can personalise your guidance experience.</p>
+    </div>
+    <div class="select-wrapper">
+      <select id="role-select">
+        <option value="" disabled selected>— Select your profile —</option>
+        <option value="student">Student (High School - Intermediate)</option>
+        <option value="undergraduate">Graduating (any field)</option>
+        <option value="working">Graduated / Working Professional</option>
+      </select>
+      <span class="select-arrow"><svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+    </div>
+    <p id="role-error" style="display:none;font-size:13px;color:var(--error);margin-top:8px;">Please select a profile to continue.</p>
+    <button class="role-btn" onclick="handleRoleSelect()">Continue →</button>
+    <br>
+    <button class="btn-back" style="margin-top:16px;width:100%;justify-content:center;" onclick="goTo('page-landing')">← Back to Home</button>
+  </div>
+</section>
+
+
+<!-- PAGE 3: STUDENT FORM -->
+<section class="page" id="page-student">
+  <div class="form-topbar">
+    <div class="topbar-brand">AI Career<span>.</span></div>
+    <div class="topbar-role-badge">Student</div>
+  </div>
+  <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:60%"></div></div>
+  <div class="form-body">
+    <div class="form-container">
+      <h2 class="form-section-title">Student Profile</h2>
+      <p class="form-section-sub">Fill in the details according to your school report. Fields marked <span style="color:var(--error)">*</span> are required.</p>
+
+      <div class="section-label">Academic Scores (0 – 100)</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">Maths Score <span class="req">*</span></label>
+          <input type="number" class="field-input score-field" placeholder="e.g. 82" min="0" max="100" id="s_maths"/>
+          <span class="field-error" id="err_s_maths">⚠ Incorrect input: number should not exceed beyond hundred.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Science Score <span class="req">*</span></label>
+          <input type="number" class="field-input score-field" placeholder="e.g. 76" min="0" max="100" id="s_science"/>
+          <span class="field-error" id="err_s_science">⚠ Incorrect input: number should not exceed beyond hundred.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">English Score <span class="req">*</span></label>
+          <input type="number" class="field-input score-field" placeholder="e.g. 88" min="0" max="100" id="s_english"/>
+          <span class="field-error" id="err_s_english">⚠ Incorrect input: number should not exceed beyond hundred.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Overall Percentage <span class="req">*</span></label>
+          <input type="number" class="field-input score-field" placeholder="e.g. 80" min="0" max="100" id="s_overall"/>
+          <span class="field-error" id="err_s_overall">⚠ Incorrect input: number should not exceed beyond hundred.</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Skills & Aptitude (0 – 100)</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">Logical Reasoning <span class="req">*</span></label>
+          <input type="number" class="field-input score-field" placeholder="e.g. 70" min="0" max="100" id="s_logical"/>
+          <span class="field-error" id="err_s_logical">⚠ Incorrect input: number should not exceed beyond hundred.</span>
+          <span class="field-hint">Don't know your reasoning score? Try <a href="https://www.indiabix.com/reasoning/" target="_blank" style="color: #2563eb; text-decoration: underline;">Indiabix</a></span>
+        </div>
+        <div class="field-group">
+          <label class="field-label"> Coding Knowledge <span class="req"></span></label>
+          <input type="text" class="field-input" placeholder="e.g. Python, Java" id="s_hobby"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Communication Skills <span class="req">*</span></label>
+          <select class="field-input field-select" id="s_comm">
+            <option value="" disabled selected>Select level</option>
+            <option value="poor">Poor</option>
+            <option value="average">Average</option>
+            <option value="good">Good</option>
+            <option value="excellent">Excellent</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Favourite Subject <span class="req">*</span></label>
+          <select class="field-input field-select" id="s_fav_subject">
+            <option value="" disabled selected>Select your favourite</option>
+            <option value="maths">Mathematics</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+            <option value="social">Social Studies</option>
+            <option value="computers">Computers</option>
+            <option value="arts">Arts</option>
+            <option value="commerce">Commerce</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      
+  <div class="form-footer">
+    <button class="btn-back" onclick="goTo('page-role')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <button class="btn-guide" id="guide-btn-student">
+      Guide Me
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+
+<!-- PAGE 4: UNDERGRADUATE FORM -->
+<section class="page" id="page-undergraduate">
+  <div class="form-topbar">
+    <div class="topbar-brand">AI Career<span>.</span></div>
+    <div class="topbar-role-badge">Undergraduate</div>
+  </div>
+  <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:60%"></div></div>
+  <div class="form-body">
+    <div class="form-container">
+      <h2 class="form-section-title">Undergraduate Profile</h2>
+      <p class="form-section-sub">Fill in the details below. Fields marked <span style="color:var(--error)">*</span> are required.</p>
+
+      <div class="section-label">Academic Performance (0 – 100 unless noted)</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">CGPA <span class="req">*</span></label>
+          <input type="number" class="field-input" placeholder="e.g. 8.5" min="0" max="10" step="0.1" id="u_cgpa"/>
+          <span class="field-hint">Scale 0 – 10</span>
+          <span class="field-error" id="err_u_cgpa">⚠ Incorrect input: CGPA should be between 0 and 10.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Coding Knowledge <span class="req">*</span></label>
+          <input type="text" class="field-input" placeholder="e.g. Python, Java, C++" min="0" max="100" id="u_coding"/>
+          <span class="field-hint">List your programming languages and skills</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Aptitude Score <span class="req"></span></label>
+          <input type="number" class="field-input score-field" placeholder="e.g. 80" min="0" max="100" id="u_aptitude"/>
+          <span class="field-error" id="err_u_aptitude">⚠ Incorrect input: number should not exceed beyond hundred.</span>
+          <span class="field-hint">Don't know your aptitude score? Try <a href="https://www.indiabix.com/" target="_blank" style="color: #2563eb; text-decoration: underline;">Indiabix</a></span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Communication Skills <span class="req">*</span></label>
+          <select class="field-input field-select" id="u_comm">
+            <option value="" disabled selected>Select level</option>
+            <option value="poor">Poor</option>
+            <option value="average">Average</option>
+            <option value="good">Good</option>
+            <option value="excellent">Excellent</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Experience & Achievements</div>
+      <div class="fields-grid">
+        <!-- Internships Section -->
+        <div class="field-group">
+          <label class="field-label">Internships Completed <span class="req">*</span></label>
+          <select class="field-input field-select" id="u_internships_yn" onchange="toggleField('u_internships_wrapper')">
+            <option value="" disabled selected>Select</option>
+            <option value="yes"> Yes</option>
+            <option value="no">No</option>
+          </select>
+          <div id="u_internships_wrapper" style="display:none;margin-top:12px;">
+            <div class="field-group" style="margin-bottom:12px;">
+              <label class="field-label">In Which Field <span class="req">*</span></label>
+              <select class="field-input field-select" id="u_internships_field">
+                <option value="" disabled selected>Select field</option>
+                <option value="mern">MERN Stack</option>
+                <option value="ai">AI</option>
+                <option value="data_analyst">Data Analyst</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="backend">Backend Development</option>
+                <option value="devops">DevOps</option>
+                <option value="ml">Machine Learning</option>
+                <option value="cybersecurity">Cybersecurity</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">How Many Internships <span class="req">*</span></label>
+              <input type="number" class="field-input" placeholder="e.g. 2" min="0" id="u_internships_count"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="field-group">
+          <label class="field-label">Projects Completed <span class="req">*</span></label>
+          <select class="field-input field-select" id="u_projects_yn" onchange="toggleField('u_projects_wrapper')">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <div id="u_projects_wrapper" style="display:none;margin-top:12px;">
+            <div class="field-group" style="margin-bottom:12px;">
+              <label class="field-label">In Which Field <span class="req">*</span></label>
+              <select class="field-input field-select" id="u_projects_field">
+                <option value="" disabled selected>Select field</option>
+                <option value="mern">MERN Stack</option>
+                <option value="ai">AI</option>
+                <option value="data_analyst">Data Analyst</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="backend">Backend Development</option>
+                <option value="devops">DevOps</option>
+                <option value="ml">Machine Learning</option>
+                <option value="cybersecurity">Cybersecurity</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">How Many Projects <span class="req">*</span></label>
+              <input type="number" class="field-input" placeholder="e.g. 5" min="0" id="u_projects_count"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="field-group">
+          <label class="field-label">Certifications <span class="req">*</span></label>
+          <select class="field-input field-select" id="u_certs_yn" onchange="toggleField('u_certs_wrapper')">
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <div id="u_certs_wrapper" style="display:none;margin-top:12px;">
+            <div class="field-group" style="margin-bottom:12px;">
+              <label class="field-label">In Which Field <span class="req">*</span></label>
+              <select class="field-input field-select" id="u_certs_field">
+                <option value="" disabled selected>Select field</option>
+                <option value="mern">MERN Stack</option>
+                <option value="ai">AI</option>
+                <option value="data_analyst">Data Analyst</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="backend">Backend Development</option>
+                <option value="devops">DevOps</option>
+                <option value="ml">Machine Learning</option>
+                <option value="cybersecurity">Cybersecurity</option>
+                <option value="aws">AWS</option>
+                <option value="cloud">Cloud Computing</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">How Many Certifications <span class="req">*</span></label>
+              <input type="number" class="field-input" placeholder="e.g. 3" min="0" id="u_certs_count"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group field-full">
+          <label class="field-label">Best Project Abstract <span class="req"></span></label>
+          <textarea class="field-input" placeholder="Paste your best project abstract here..." id="u_best_project_abstract" style="min-height:100px;resize:vertical;"></textarea>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">College Information</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">College Tier <span class="req">*</span></label>
+          <select class="field-input field-select" id="u_college_tier">
+            <option value="" disabled selected>Select tier</option>
+            <option value="tier1">Tier 1 (IIT / NIT / BITS)</option>
+            <option value="tier2">Tier 2 (State Universities)</option>
+            <option value="tier3">Tier 3 (Private / Others)</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Specialization <span class="req">*</span></label>
+          <select class="field-input field-select" id="u_specialization">
+            <option value="" disabled selected>Select specialization</option>
+            <option value="cse">Computer Science Engineering</option>
+            <option value="ece">Electronics & Communication</option>
+            <option value="mech">Mechanical Engineering</option>
+            <option value="civil">Civil Engineering</option>
+            <option value="it">Information Technology</option>
+            <option value="ai_ml">AI / Machine Learning</option>
+            <option value="data_sci">Data Science</option>
+            <option value="bca">BCA / BSc Computer Science</option>
+            <option value="bba">BBA / Management</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer">
+    <button class="btn-back" onclick="goTo('page-role')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <button class="btn-guide" id="guide-btn-up">
+      Guide Me
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+
+<!-- PAGE 5: WORKING PROFESSIONAL FORM -->
+<section class="page" id="page-working">
+  <div class="form-topbar">
+    <div class="topbar-brand">AI Career<span>.</span></div>
+    <div class="topbar-role-badge">Working Professional</div>
+  </div>
+  <div class="progress-bar-outer"><div class="progress-bar-inner" style="width:60%"></div></div>
+  <div class="form-body">
+    <div class="form-container">
+      <h2 class="form-section-title">Professional Profile</h2>
+      <p class="form-section-sub">Fill in the details below. Fields marked <span style="color:var(--error)">*</span> are required.</p>
+
+      <div class="section-label">Work Details</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">Years of Experience <span class="req">*</span></label>
+          <input type="number" class="field-input" placeholder="e.g. 4" min="0" id="w_exp"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Current Salary (LPA) <span class="req">*</span></label>
+          <input type="number" class="field-input" placeholder="e.g. 12" min="0" step="0.5" id="w_salary"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">How many promotions did you get <span class="req">*</span></label>
+          <input type="number" class="field-input" placeholder="e.g. 2" min="0" id="w_promotions"/>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Skill Assessment</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">Technical Skill <span class="req">*</span></label>
+          <select class="field-input field-select" id="w_technical">
+            <option value="" disabled selected>Select level</option>
+            <option value="poor">Poor</option>
+            <option value="average">Average</option>
+            <option value="good">Good</option>
+            <option value="excellent">Excellent</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Leadership Skill <span class="req">*</span></label>
+          <select class="field-input field-select" id="w_leadership">
+            <option value="" disabled selected>Select level</option>
+            <option value="poor">Poor</option>
+            <option value="average">Average</option>
+            <option value="good">Good</option>
+            <option value="excellent">Excellent</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Communication Skill <span class="req">*</span></label>
+          <select class="field-input field-select" id="w_comm">
+            <option value="" disabled selected>Select level</option>
+            <option value="poor">Poor</option>
+            <option value="average">Average</option>
+            <option value="good">Good</option>
+            <option value="excellent">Excellent</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Career Aspirations & Achievements</div>
+      <div class="fields-grid">
+        <div class="field-group">
+          <label class="field-label">Which field do you want to explore and why? <span class="req"></span></label>
+          <textarea class="field-input" placeholder="Share the field you're interested in and your reasons..." id="w_field_exploration" style="min-height:100px;resize:vertical;"></textarea>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Which was your best project in your career? <span class="req"></span></label>
+          <textarea class="field-input" placeholder="Paste your best project's abstract here..." id="w_best_project_abstract" style="min-height:100px;resize:vertical;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer">
+    <button class="btn-back" onclick="goTo('page-role')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </button>
+    <button class="btn-guide" id="guide-btn-work">
+      Guide Me
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay" style="
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  font-family: sans-serif;
+">
+  <div id="loading-spinner" style="
+    width: 48px;
+    height: 48px;
+    border: 4px solid #dbeafe;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: loadingSpin 0.85s linear infinite;
+  "></div>
+  <p style="
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #374151;
+    letter-spacing: 0.02em;
+    margin: 0;
+  ">Loading your recommendation…</p>
+</div>
+
+<style>
+@keyframes loadingSpin {
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+function toggleField(wrapperId) {
+  const selectId = event.target.id;
+  const selectElement = document.getElementById(selectId);
+  const wrapper = document.getElementById(wrapperId);
+  
+  if (selectElement && selectElement.value === 'yes') {
+    if (wrapper) wrapper.style.display = 'block';
+  } else {
+    if (wrapper) {
+      wrapper.style.display = 'none';
+      // Clear the fields when hiding
+      const inputs = wrapper.querySelectorAll('input');
+      inputs.forEach(input => input.value = '');
+    }
+  }
+}
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
