@@ -1,2 +1,5 @@
+venv/
+**pycache**/
+*.pyc
 .env
-.env.local
+artifacts/responses/
