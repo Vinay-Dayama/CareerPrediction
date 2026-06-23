@@ -1,0 +1,22 @@
+[ 2026-06-23 22:55:31,598 ] WARNING -  * Debugger is active!
+[ 2026-06-23 22:55:31,602 ] INFO -  * Debugger PIN: 165-652-597
+[ 2026-06-23 22:55:31,877 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:55:31] "GET / HTTP/1.1" 200 -
+[ 2026-06-23 22:55:31,988 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:55:31] "GET /static/script.js HTTP/1.1" 200 -
+[ 2026-06-23 22:55:31,991 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:55:31] "GET /static/style.css HTTP/1.1" 200 -
+[ 2026-06-23 22:55:42,927 ] INFO - Prediction pipeline started
+[ 2026-06-23 22:55:42,928 ] INFO - Sending request to Gemini
+[ 2026-06-23 22:55:57,857 ] INFO - Gemini response received
+[ 2026-06-23 22:55:57,873 ] INFO - Prediction completed
+[ 2026-06-23 22:55:57,875 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:55:57] "POST /predict HTTP/1.1" 200 -
+[ 2026-06-23 22:55:57,986 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:55:57] "GET /result HTTP/1.1" 200 -
+[ 2026-06-23 22:55:58,129 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:55:58] "GET /static/result.css HTTP/1.1" 200 -
+[ 2026-06-23 22:56:03,126 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:56:03] "GET / HTTP/1.1" 200 -
+[ 2026-06-23 22:56:03,285 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:56:03] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+[ 2026-06-23 22:56:03,289 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:56:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+[ 2026-06-23 22:56:19,719 ] INFO - Prediction pipeline started
+[ 2026-06-23 22:56:19,719 ] INFO - Sending request to Gemini
+[ 2026-06-23 22:56:34,462 ] INFO - Gemini response received
+[ 2026-06-23 22:56:34,467 ] INFO - Prediction completed
+[ 2026-06-23 22:56:34,468 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:56:34] "POST /predict HTTP/1.1" 200 -
+[ 2026-06-23 22:56:34,521 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:56:34] "GET /result HTTP/1.1" 200 -
+[ 2026-06-23 22:56:34,614 ] INFO - 127.0.0.1 - - [23/Jun/2026 22:56:34] "[36mGET /static/result.css HTTP/1.1[0m" 304 -
